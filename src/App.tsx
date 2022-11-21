@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from  'axios';
 import logo from './logo.svg';
 import './App.css';
+import { RouterProvider } from 'react-router';
+import { router } from './routes';
 
 function App() {
+  const REDIRECT_URL = `/auth/authorize/google`
+  const url = `http://localhost:2020/google/authorize/url?redirectUrl=${REDIRECT_URL}`;
+
+  const [redirectUrl, setRedirectUrl] = useState("")
+
+  useEffect(() => {
+    axios.get(url)
+    .then(function (response) {
+      // handle success
+      setRedirectUrl(response.data.data.URL);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {redirectUrl ? <a href={redirectUrl}> google auth  </a> : null}
+      <RouterProvider router={router} />
     </div>
   );
 }
