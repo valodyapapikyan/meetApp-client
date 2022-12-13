@@ -1,27 +1,26 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import GoogleScreen from '../pages/google-oauth2-screen/index';
-import {
-  createBrowserRouter,
-  Link,
-} from "react-router-dom";
+import React from 'react';
+import {  Route, Routes } from 'react-router-dom';
 
-//google/authorize/url
-//
+import { ProtectedRoute } from './protected-route';
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <div>
-        <h1>Hello World</h1>
-      </div>
-    ),
-  },
-  {
-    path: "/auth/authorize/provider",
-    element: <GoogleScreen/>,
-  },
-]);
+//pages
+import Dashboard from '../pages/dashboard';
+import UserDashBoard from '../pages/user-dashboard/index';
 
 
+export const MainRoutes = () => {
+  return (
+    <Routes>
+      <Route index element={<Dashboard />} />
+      <Route
+        path="/dashboard/events"
+        element={
+          <ProtectedRoute redirectPath="/">
+              <UserDashBoard />
+
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  );
+};
