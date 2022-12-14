@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, {
   createContext,
   FC,
@@ -17,7 +16,6 @@ import { userService } from '../../services/user-service/index';
 import { accessTokenKey, codeKey } from '../../constants';
 import Loading from '../../components/loading';
 import { IAuthContextType, IAuthProviderProps, IUser } from '../../types';
-
 
 const AuthContext = createContext<IAuthContextType>({} as IAuthContextType);
 
@@ -65,7 +63,7 @@ export const AuthProvider: FC<IAuthProviderProps> = ({
         code: query.get(codeKey),
         redirectUrl: REDIRECT_URL,
       })
-      .then(async (response) => {
+      .then((response) => {
         const {
           data: { accessToken },
         } = response;
@@ -80,7 +78,7 @@ export const AuthProvider: FC<IAuthProviderProps> = ({
 
   useEffect(() => {
     if (isLogedIn) {
-      return setLoadingInitial(false)
+      return setLoadingInitial(false);
     }
 
     userService
@@ -101,11 +99,13 @@ export const AuthProvider: FC<IAuthProviderProps> = ({
       user,
       redirectUrl,
       getAccessToken,
-      isLogedIn
+      isLogedIn,
     }),
-    [user, redirectUrl,isLogedIn]
+    [user, redirectUrl, isLogedIn]
   );
 
+  console.log(props.children);
+  
   return (
     <AuthContext.Provider value={tools}>
       {loadingInitial ? <Loading /> : props?.children}
