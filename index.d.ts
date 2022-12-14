@@ -1,0 +1,1 @@
+declare module 'dino_ui_tools'

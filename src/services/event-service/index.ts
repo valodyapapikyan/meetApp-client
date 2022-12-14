@@ -1,13 +1,17 @@
 import { baseURL } from '../../configs';
 import { HttpClient } from '../http-request';
+import { endpoints } from '../../configs/index';
+import { IEvents } from '../../types';
+import { normilizeData } from '../../utils';
 
 class EventService extends HttpClient {
   public constructor() {
     super(baseURL);
   }
 
-  public async getEvents() {
-    return await this.instance.get('');
+  public async getEvents(): Promise<IEvents> {
+    const data = await this.instance.get(endpoints.get);
+    return normilizeData(data);
   }
 
   public createEvent(payload: any) {
