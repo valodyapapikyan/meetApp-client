@@ -6,9 +6,10 @@ export const USER_PROFILE = `http://localhost:2020/user`;
 
 export const endpoints = {
   get: `events`,
+  getEvent: `event`,
   remove: `events`,
   update: `events`,
-  create: `create`,
+  create: `events/create`,
   attende: `attende`,
   getuserevents: `events/user-events`,
 };

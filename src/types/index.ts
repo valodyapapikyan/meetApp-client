@@ -22,11 +22,13 @@ export type IAuthContextType = {
 
 export type IEventContextType = {
   getEvents: () => void;
+  getEvent: (eventID:string) => void;
   createEvent: () => void;
   deleteEvent: () => void;
   updateEvent: () => void;
   attendeEvent: () => void;
-  redirectTo: (eventID: string, callBack: (state: boolean) => any) => any;
+  redirectToEventRegister: (eventID: string, callBack: (state: boolean) => any) => any;
+  redirectToEventInfoPage: (eventID: string) => void;
   eventsList: IEvent[];
 };
 

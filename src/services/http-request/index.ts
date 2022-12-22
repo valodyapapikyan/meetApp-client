@@ -31,7 +31,9 @@ export abstract class HttpClient {
 
     const token = await Storage.getItem(accessTokenKey);
 
-    config.headers['Authorization'] = `Bearer ${token}`;
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
 
     return config;
   }

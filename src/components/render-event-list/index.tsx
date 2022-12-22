@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import useEvents from '../../hooks/use-events/index';
 import { IEvent } from '../../types/index';
 import { Popup } from 'dino_ui_tools';
-import SignupPopupContent from '../sign-up-popup-content';
+import SignupPopupContent from '../signup-popup-content';
 import { useNavigate } from 'react-router';
 import useAuth from '../../hooks/use-auth/index';
 
@@ -11,18 +11,18 @@ import { Button } from 'dino_ui_tools';
 
 const EventListRender: FC<any> = () => {
   const { redirectUrl } = useAuth();
-  const { redirectTo, eventsList } = useEvents();
+  const { redirectToEventRegister, eventsList,redirectToEventInfoPage } = useEvents();
 
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const redirect = (eventID: string) => {
-    redirectTo(eventID, setOpen);
+    redirectToEventRegister(eventID, setOpen);
   };
 
   const closePopup = () => setOpen(false);
 
   return (
-    <div>
+    <div style={{marginTop: '200px'}}>
       <Popup onClose={closePopup} isOpen={isOpen}>
         <div>
           <SignupPopupContent redirectUrl={redirectUrl} />
@@ -40,6 +40,7 @@ const EventListRender: FC<any> = () => {
               type="primary"
               onClick={() => redirect(eventID)}
             />
+            <div onClick={() => redirectToEventInfoPage?.(eventID)}> learn more </div>
           </div>
         );
       })}

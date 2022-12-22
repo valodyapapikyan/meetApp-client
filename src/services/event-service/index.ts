@@ -15,7 +15,11 @@ class EventService extends HttpClient {
   }
 
   public createEvent(payload: any) {
-    return this.instance.post('');
+    return this.instance.post(endpoints.create,payload);
+  }
+
+  public getEvent(eventID: string) {
+    return this.instance.get(`${endpoints.getEvent}/${eventID}`);
   }
 
   public updateEvent(payload: any) {
