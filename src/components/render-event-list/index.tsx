@@ -1,14 +1,12 @@
 import React, { FC, useState } from 'react';
 import useEvents from '../../hooks/use-events/index';
 import { IEvent } from '../../types/index';
-import { Popup } from 'dino_ui_tools';
+import { Popup ,Button} from 'dino_ui_tools';
 import SignupPopupContent from '../signup-popup-content';
 import { useNavigate } from 'react-router';
 import useAuth from '../../hooks/use-auth/index';
 
-import { Button } from 'dino_ui_tools';
-
-
+import './index.scss'
 const EventListRender: FC<any> = () => {
   const { redirectUrl } = useAuth();
   const { redirectToEventRegister, eventsList,redirectToEventInfoPage } = useEvents();
@@ -22,19 +20,20 @@ const EventListRender: FC<any> = () => {
   const closePopup = () => setOpen(false);
 
   return (
-    <div style={{marginTop: '200px'}}>
+    <>
       <Popup onClose={closePopup} isOpen={isOpen}>
         <div>
           <SignupPopupContent redirectUrl={redirectUrl} />
         </div>
       </Popup>
-      {eventsList?.map(({ location, name, description, dateTime, eventID }) => {
+      {eventsList?.map(({ location, name, gudelinnes, date, eventID,image }) => {
         return (
-          <div key={eventID}>
-            <div>{name}</div>
-            <div>{description}</div>
+          <div key={eventID} className='event-item'>
+            <img className='img' src={image} alt=""/>
+            <h1>{name}</h1>
+            <div>{gudelinnes}</div>
             <div>{location}</div>
-            <div>{dateTime}</div>
+            <div>{date}</div>
             <Button
               buttonText="Register"
               type="primary"
@@ -44,7 +43,7 @@ const EventListRender: FC<any> = () => {
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 export default EventListRender;

@@ -40,7 +40,7 @@ export const AuthProvider: FC<IAuthProviderProps> = ({
   const getUserProfile = (withRedirect: boolean = false) => {
     userService
       .getUserProfile()
-      .then((response) => {
+      .then((response: { data: { profile: any; }; }) => {
         const {
           data: { profile },
         } = response;
@@ -62,7 +62,7 @@ export const AuthProvider: FC<IAuthProviderProps> = ({
         code: query.get(codeKey),
         redirectUrl: REDIRECT_URL,
       })
-      .then((response) => {
+      .then((response: { data: { accessToken: any; }; }) => {
         const {
           data: { accessToken },
         } = response;

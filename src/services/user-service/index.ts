@@ -3,7 +3,7 @@ import {
   baseURL,
   REDIRECT_URL_ACCESS_TOKEN,
 } from '../../configs';
-import { HttpClient } from '../http-request';
+import { HttpClient } from 'dino_ui_tools';
 import { USER_PROFILE } from '../../configs/index';
 
 class UserService extends HttpClient {

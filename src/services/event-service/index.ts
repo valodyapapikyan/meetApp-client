@@ -1,8 +1,8 @@
 import { baseURL } from '../../configs';
-import { HttpClient } from '../http-request';
 import { endpoints } from '../../configs/index';
 import { IEvents } from '../../types';
 import { normilizeData } from '../../utils';
+import {HttpClient} from   'dino_ui_tools';
 
 class EventService extends HttpClient {
   public constructor() {
@@ -11,6 +11,7 @@ class EventService extends HttpClient {
 
   public async getEvents(): Promise<IEvents> {
     const data = await this.instance.get(endpoints.get);
+    //@ts-ignore
     return normilizeData(data);
   }
 

@@ -11,8 +11,7 @@ const SignupPopupContent: FC<ISignupPopupContent> = (
 ) => {
   const { handler = () => ({}), redirectUrl } = props;
 
-  const redirectProviderUrl = (url: string) =>
-    window.open(redirectUrl, '_self');
+  const redirectProviderUrl = () => window.open(redirectUrl, '_self');
 
   return (
     <div>

@@ -23,7 +23,7 @@ export type IAuthContextType = {
 export type IEventContextType = {
   getEvents: () => void;
   getEvent: (eventID:string) => void;
-  createEvent: () => void;
+  createEvent: (data: any) => void;
   deleteEvent: () => void;
   updateEvent: () => void;
   attendeEvent: () => void;
@@ -33,12 +33,12 @@ export type IEventContextType = {
 };
 
 export type IEvent = {
-  dateTime: string;
-  description: string;
+  date: string;
   eventID: string;
   gudelinnes: string;
   location: string;
   name: string;
+  image: string
 };
 
 export type IEvents = {
