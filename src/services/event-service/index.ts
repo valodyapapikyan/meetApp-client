@@ -1,6 +1,6 @@
 import { baseURL } from '../../configs';
 import { endpoints } from '../../configs/index';
-import { IEvents } from '../../types';
+import {IAtendeeEvent, IEvents} from '../../types';
 import { normilizeData } from '../../utils';
 import {HttpClient} from   'dino_ui_tools';
 
@@ -31,8 +31,8 @@ class EventService extends HttpClient {
     return this.instance.delete('');
   }
 
-  public attendeEvent() {
-    return this.instance.post('');
+  public attendeeEvent(payload: any,  eventID: string) :Promise<IAtendeeEvent>{
+    return this.instance.post(`${endpoints.attendee}/${eventID}`, payload);
   }
 }
 

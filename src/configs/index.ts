@@ -10,6 +10,6 @@ export const endpoints = {
   remove: `events`,
   update: `events`,
   create: `events/create`,
-  attende: `attende`,
+  attendee: `events/attendee`,
   getuserevents: `events/user-events`,
 };

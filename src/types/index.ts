@@ -1,3 +1,5 @@
+import {TRequestStatus} from "../contexts/events";
+
 export type IAuthProviderProps = {
   children: JSX.Element;
   redirect?: () => void;
@@ -11,6 +13,7 @@ export type IUser = {
   email: string;
   firstName: string;
   lastName: string;
+  profilePicture: string
 };
 
 export type IAuthContextType = {
@@ -26,14 +29,19 @@ export type IEventContextType = {
   createEvent: (data: any) => void;
   deleteEvent: () => void;
   updateEvent: () => void;
-  attendeEvent: () => void;
+  attendeeEvent: (payload: { company: string; experience: string; direction: string },eventID:  string,) => void;
   redirectToEventRegister: (eventID: string, callBack: (state: boolean) => any) => any;
   redirectToEventInfoPage: (eventID: string) => void;
   eventsList: IEvent[];
+  event: IEvent,
+  requestStatus: TRequestStatus,
+  setRequestStatus: (payload: TRequestStatus) => void
 };
 
 export type IEvent = {
   date: string;
+  time: string,
+  description:string,
   eventID: string;
   gudelinnes: string;
   location: string;
@@ -46,3 +54,10 @@ export type IEvents = {
 };
 
 export type IObj = { [key: string]: any };
+
+export type IAtendeeEvent = {
+  data: any,
+  errorMessage: string | null,
+  status: string,
+  statusCode: number
+}

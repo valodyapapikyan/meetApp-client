@@ -30,6 +30,9 @@ const Header: FC<any> = () => {
   return (
     <div className="header">
 
+      <span>
+        <img src={user?.profilePicture} alt=""/>
+      </span>
       <div>{userFullName}</div>
       <button onClick={redirect}> create event</button>
 
